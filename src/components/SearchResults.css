@@ -1,0 +1,10 @@
+.results {
+    width: 100%;
+    background-color: white;
+    margin-top: 1rem;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}

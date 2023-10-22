@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./SearchBar.css"
 import {FaSearch} from "react-icons/fa";
 
-export const SearchBar = () => {
+export const SearchBar = ({setResults}: any) => {
     const [searchInput, setSearchInput] = useState("");
 
     function handleInput(input: string) {
@@ -15,9 +15,9 @@ export const SearchBar = () => {
         .then((response) => response.json())
         .then((json) => {
             const results = json.results.filter((pokemon: any) => {
-                return pokemon && pokemon.name && pokemon.name.toLowerCase().includes(input.toLowerCase())
+                return input && pokemon && pokemon.name && pokemon.name.toLowerCase().includes(input.toLowerCase())
             });
-            console.log(results);
+            setResults(results);
         });
     }
 
@@ -25,7 +25,6 @@ export const SearchBar = () => {
         <div className="search-wrapper">
             <FaSearch id="search-icon"/>
             <input type="text" placeholder="Search for a Pokémon" onChange={e => handleInput(e.target.value)}/>
-            <p>{searchInput}</p>
         </div>
     )
 };

@@ -1,6 +1,7 @@
 .search-wrapper {
     background-color: white;
     width: 100%;
+    max-width: 300px;
     height: 2rem;
     padding: 0 10px;
     border-radius: 10px;
