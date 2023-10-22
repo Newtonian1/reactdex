@@ -10,7 +10,9 @@ function App() {
         <div className="search-bar">
           <SearchBar/>
         </div>   
-        <div className="search-results">Search Results</div>
+        <div className="search-results">
+          Search Results
+        </div>
       </div>
     </div>
   );
