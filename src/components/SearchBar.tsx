@@ -15,10 +15,15 @@ export const SearchBar = ({setResults}: any) => {
         .then((response) => response.json())
         .then((json) => {
             const results = json.results.filter((pokemon: any) => {
-                return input && pokemon && pokemon.name && pokemon.name.toLowerCase().includes(input.toLowerCase())
+                return input && pokemon && pokemon.name && formatString(pokemon.name).includes(formatString(input))
             });
             setResults(results);
         });
+    }
+
+    function formatString(name: string) {
+        //handles edge cases like Jangmo-o line and Paradox Pokemon
+        return name.toLowerCase().replaceAll("-", "").replaceAll(" ", "")
     }
 
     return (
