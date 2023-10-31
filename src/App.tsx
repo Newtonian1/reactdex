@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
 import './App.css';
-import {SearchBar} from "./components/SearchBar"
-import {SearchResults} from "./components/SearchResults"
+import { Search } from './components/Search';
+import { PokemonPage } from './components/PokemonPage';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
-  const [results, setResults] = useState([]);
-
   return (
-    <div className="App">
-      <h1 id="site-title">Pokédex App</h1>
-      <div className="search-bar-container">
-        <SearchBar setResults={setResults}/>
-        <SearchResults results={results}/>
+    <BrowserRouter>
+      <div className="App">
+        <h1 id="site-title">Pokédex App</h1>
+        <Routes>
+          <Route path="/" element={<Search/>}/>
+          <Route path="/pokemon/" element={<PokemonPage/>}/>
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
