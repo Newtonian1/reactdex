@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./SearchResults.css"
+import { Link } from 'react-router-dom';
 
 export const SearchResults = ({results}: any) => {
 
@@ -38,7 +39,7 @@ export const SearchResults = ({results}: any) => {
     return (
     <div className="results">
         {results.map((result: any, id: number) => {
-            return <div className="search-result" key={id}>{formatName(result.name)}</div>;
+            return <Link to={`/pokemon/${ result.name }`} className="search-result" key={id}>{formatName(result.name)}</Link>;
         })}
     </div>
     )
