@@ -16,14 +16,15 @@ export const PokemonPage = () => {
         .then(res => res.json())
         .then(json => {
             setId(json.id);
-            GetDefaultForm(json.varieties);
+            GetForms(json.varieties);
         })
     }
 
-    const GetDefaultForm = (varieties: any) => {
+    const GetForms = (varieties: any) => {
         varieties.map((form: any) => {
             if (form.is_default === true)
             setDefaultForm(form.pokemon.url);
+            //need to implement alternative forms
             return form.pokemon.url;
         });
     }
@@ -39,10 +40,14 @@ export const PokemonPage = () => {
 
     const GetTypes = (types: any) => {
         types.map((type: any) => {
-            if (type.slot === 1)
-                setType1(type.type.name);
-            if (type.slot === 2)
-                setType2(type.type.name);
+            if (type.slot === 1) {
+                const t1 = type.type.name;
+                setType1(t1.substring(0,1).toUpperCase() + t1.slice(1).toLowerCase());
+            }
+            if (type.slot === 2) {
+                const t2 = type.type.name;
+                setType2(t2.substring(0,1).toUpperCase() + t2.slice(1).toLowerCase());
+            }
         })
     }
 
