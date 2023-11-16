@@ -23,7 +23,13 @@ export const SearchBar = ({setResults}: any) => {
 
     function formatString(name: string) {
         //handles edge cases like Jangmo-o line and Paradox Pokemon
-        return name.toLowerCase().replaceAll("-", "").replaceAll(" ", "")
+        return name.toLowerCase()
+                   .replaceAll("-","")
+                   .replaceAll(" ","")
+                   .replaceAll("'","")
+                   .replaceAll(".","")
+                   .replaceAll(":","")
+                   .replaceAll("é","e");
     }
 
     return (
