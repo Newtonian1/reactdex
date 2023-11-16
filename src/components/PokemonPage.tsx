@@ -11,16 +11,16 @@ export const PokemonPage = () => {
     const [type1, setType1] = useState("");
     const [type2, setType2] = useState("");
 
-    const SetPokemonData = (name: string) => {
+    const setPokemonData = (name: string) => {
         fetch("https://pokeapi.co/api/v2/pokemon-species/" + name)
         .then(res => res.json())
         .then(json => {
             setId(json.id);
-            GetForms(json.varieties);
+            getForms(json.varieties);
         })
     }
 
-    const GetForms = (varieties: any) => {
+    const getForms = (varieties: any) => {
         varieties.map((form: any) => {
             if (form.is_default === true)
             setDefaultForm(form.pokemon.url);
@@ -29,16 +29,16 @@ export const PokemonPage = () => {
         });
     }
 
-    const DisplayDefaultForm = () => {
+    const displayDefaultForm = () => {
         fetch(defaultForm)
         .then(res => res.json())
         .then(json => {
             setSprite(json.sprites.front_default);
-            GetTypes(json.types);
+            getTypes(json.types);
         })
     }
 
-    const GetTypes = (types: any) => {
+    const getTypes = (types: any) => {
         types.map((type: any) => {
             if (type.slot === 1) {
                 const t1 = type.type.name;
@@ -52,8 +52,8 @@ export const PokemonPage = () => {
     }
 
     useEffect(() => {
-        SetPokemonData(name.name);
-        DisplayDefaultForm();
+        setPokemonData(name.name);
+        displayDefaultForm();
     });
 
     return (
